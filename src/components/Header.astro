@@ -1,0 +1,29 @@
+---
+import { SITE, SERVICES } from '../data/site';
+const path = Astro.url.pathname;
+const cur = (p: string) => (p === '/' ? path === '/' : path.startsWith(p)) ? 'page' : undefined;
+---
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="brand" href="/" aria-label={`${SITE.name} home`}>
+      <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0B2E3F"/><path d="M32 10c8 11 14 18 14 26a14 14 0 0 1-28 0c0-8 6-15 14-26z" fill="#7FD6CF"/><path d="M25 38a7 7 0 0 0 7 7" stroke="#0B2E3F" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+      <span>Santa Barbara<br />Leak Detection</span>
+    </a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Toggle menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="/" aria-current={cur('/')}>Home</a>
+      <div class="dd">
+        <a class="dd-toggle" href="/#services" aria-haspopup="true">Services</a>
+        <div class="dd-menu">
+          {SERVICES.map((s) => <a href={`/services/${s.slug}/`}>{s.title}</a>)}
+        </div>
+      </div>
+      <a href="/service-areas/" aria-current={cur('/service-areas')}>Service Areas</a>
+      <a href="/blog/" aria-current={cur('/blog')}>Blog</a>
+      <a href="/contact/" aria-current={cur('/contact')}>Contact</a>
+      <a class="call" href={`tel:${SITE.phoneHref}`}>Call {SITE.phone}</a>
+    </nav>
+  </div>
+</header>

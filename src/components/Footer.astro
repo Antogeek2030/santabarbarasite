@@ -1,0 +1,36 @@
+---
+import { SITE, SERVICES, FULL_ADDRESS, MAP_LINK } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>{SITE.name}</h3>
+        <p>Non-invasive leak detection for Santa Barbara homes and businesses. Clear answers, honest pricing, and minimal damage.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>{SERVICES.map((s) => <li><a href={`/services/${s.slug}/`}>{s.title}</a></li>)}</ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/service-areas/">Service Areas</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit or call</h4>
+        <ul>
+          <li><a href={MAP_LINK} target="_blank" rel="noopener">{FULL_ADDRESS}</a></li>
+          <li><a href={`tel:${SITE.phoneHref}`}>{SITE.phone}</a></li>
+          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© {year} {SITE.name}. All rights reserved.</div>
+  </div>
+</footer>

@@ -1,0 +1,28 @@
+---
+import { SITE, FULL_ADDRESS, MAP_EMBED, DIRECTIONS_LINK } from '../data/site';
+const { heading = 'Find us in downtown Santa Barbara' } = Astro.props;
+---
+<section class="section">
+  <div class="wrap">
+    <div class="map-grid">
+      <div>
+        <h2>{heading}</h2>
+        <ul class="info-list">
+          <li><strong>Address</strong>{FULL_ADDRESS}</li>
+          <li><strong>Phone</strong><a href={`tel:${SITE.phoneHref}`}>{SITE.phone}</a></li>
+          <li><strong>Hours</strong>{SITE.hours}</li>
+        </ul>
+        <a class="btn btn-outline" href={DIRECTIONS_LINK} target="_blank" rel="noopener">Get directions</a>
+      </div>
+      <div class="map-frame">
+        <iframe
+          title={`Map showing ${FULL_ADDRESS}`}
+          src={MAP_EMBED}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { POSTS } from '../../data/site';
+const fmt = (d: string) => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Base title="Leak Detection Blog" description="Practical leak detection and water damage tips for Santa Barbara homeowners." path="/blog/">
+  <PageHero title="Leak Detection Blog" text="Practical advice for Santa Barbara homeowners on finding leaks and protecting your home." crumbs={[{ label: 'Blog' }]} />
+  <section class="section">
+    <div class="wrap">
+      <div class="grid g3">
+        {POSTS.map((p) => (
+          <a class="card-link" href={`/blog/${p.slug}/`}>
+            <article class="card">
+              <span class="tag">{p.tag}</span>
+              <h3>{p.title}</h3>
+              <p>{p.description}</p>
+              <span class="meta">{fmt(p.date)}</span>
+            </article>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

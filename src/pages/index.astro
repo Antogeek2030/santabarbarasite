@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import MapSection from '../components/MapSection.astro';
+import { SITE, SERVICES, POSTS } from '../data/site';
+---
+<Base
+  title="Leak Detection in Santa Barbara, CA | Fast, Non-Invasive"
+  description="Local leak detection in Santa Barbara, CA. Water, slab, pool, and emergency leak finding without tearing up your home. Free quotes."
+  path="/"
+>
+  <section class="hero">
+    <svg class="drops" width="520" height="520" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4c9 12 16 20 16 30a16 16 0 0 1-32 0c0-10 7-18 16-30z" fill="#7FD6CF"/></svg>
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Find the leak. Skip the demolition.</h1>
+        <p class="lead">Santa Barbara's local leak detection team. We locate hidden water leaks in walls, slabs, pools, and yards with electronic tools, so repairs stay small.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href={`tel:${SITE.phoneHref}`}>Call {SITE.phone}</a>
+          <a class="btn btn-ghost" href="/contact/">Get a free quote</a>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Why homeowners choose us">
+        <h2>Why homeowners call us</h2>
+        <ul>
+          <li>Non-invasive tools that protect your walls and floors</li>
+          <li>Same-day and emergency appointments</li>
+          <li>Written reports accepted for insurance claims</li>
+          <li>Upfront pricing and no pressure</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Our core leak detection services</h2>
+        <p class="lead">From a mystery water bill to a burst pipe, we keep Santa Barbara properties dry.</p>
+      </div>
+      <div class="grid g3">
+        {SERVICES.map((s) => (
+          <a class="card-link" href={`/services/${s.slug}/`}>
+            <article class="card accent">
+              <h3>{s.title}</h3>
+              <p>{s.short}</p>
+              <span class="more">Learn more</span>
+            </article>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tint">
+    <div class="wrap split">
+      <div>
+        <h2>How a visit works</h2>
+        <p class="lead">Simple, quick, and easy to follow.</p>
+        <ol class="steps">
+          <li><strong>You call or request a quote.</strong> Tell us what you are noticing.</li>
+          <li><strong>We inspect on site.</strong> We test pressure and use acoustic and thermal tools.</li>
+          <li><strong>We pinpoint the leak.</strong> The exact spot is marked and explained.</li>
+          <li><strong>You get a clear report.</strong> Photos, findings, and repair options.</li>
+        </ol>
+      </div>
+      <aside class="side">
+        <h3>Local, licensed, and insured</h3>
+        <p>Serving Santa Barbara, Montecito, Goleta, Carpinteria, and nearby communities.</p>
+        <a class="btn btn-primary" href="/service-areas/">See service areas</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Helpful reading</h2>
+        <p class="lead">Practical advice for Santa Barbara homeowners.</p>
+      </div>
+      <div class="grid g3">
+        {POSTS.map((p) => (
+          <a class="card-link" href={`/blog/${p.slug}/`}>
+            <article class="card">
+              <span class="tag">{p.tag}</span>
+              <h3>{p.title}</h3>
+              <p>{p.description}</p>
+              <span class="more">Read more</span>
+            </article>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <MapSection />
+  <CtaBand title="Ready for a free leak detection quote?" text="Local, licensed, and insured. Serving Santa Barbara and nearby communities." />
+</Base>

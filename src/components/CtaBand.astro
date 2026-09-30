@@ -1,0 +1,14 @@
+---
+import { SITE } from '../data/site';
+const { title = 'Ready to find your leak?', text = 'Tell us what you are seeing and we will help you find the source quickly.' } = Astro.props;
+---
+<section class="cta-band">
+  <div class="wrap">
+    <h2>{title}</h2>
+    <p>{text}</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href={`tel:${SITE.phoneHref}`}>Call {SITE.phone}</a>
+      <a class="btn btn-ghost" href="/contact/">Request a free quote</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { POSTS, SERVICES, SITE } from '../../data/site';
+
+export function getStaticPaths() {
+  return POSTS.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+const date = new Date(p.date + 'T12:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Base title={p.title} description={p.description} path={`/blog/${p.slug}/`}>
+  <PageHero title={p.title} text={date} crumbs={[{ label: 'Blog', href: '/blog/' }, { label: p.tag }]} />
+  <section class="section">
+    <div class="wrap split">
+      <article class="prose">
+        {p.body.map((b) => (
+          <>
+            {b.h && <h2>{b.h}</h2>}
+            {b.p && <p>{b.p}</p>}
+            {b.ul && <ul class="checks">{b.ul.map((x) => <li>{x}</li>)}</ul>}
+          </>
+        ))}
+        <p><a href="/blog/">← Back to all posts</a></p>
+      </article>
+      <aside class="side">
+        <h3>Think you have a leak?</h3>
+        <p>We can find it without tearing open your walls.</p>
+        <a class="btn btn-primary" href={`tel:${SITE.phoneHref}`}>Call {SITE.phone}</a>
+        <h3 style="margin-top:1.6rem">Our services</h3>
+        <ul>{SERVICES.map((s) => <li><a href={`/services/${s.slug}/`}>{s.title}</a></li>)}</ul>
+      </aside>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
